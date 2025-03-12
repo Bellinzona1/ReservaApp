@@ -1,0 +1,16 @@
+.card4{
+    display: flex;
+    flex-direction: column;
+    background-image: none;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-image: url("https://s3-alpha-sig.figma.com/img/4ed7/e90d/b903ce90d5a0034efa0381220b84cfb4?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=MtdtW0V1k3VKR~bJFRVUIPPAc31ec6KS8VLzBMwvXejLDKWwW5cC69uVwD3AN8XUL~JABHy6-LD6uTWALDg9nYM-J-UOQbehUZu4-3mFndl0NC6kHnNuwPil01GzsTX103pykUgtaEWRKMCr35uXt7L88iup6J6toO7sDTnv1fVscpeM~xL6AgStwm4waS4-LhZucjKeoz8nAdxlZgDb59IQvBZvKh~3iRUAOFSSQxY-7~LHiIkrRBy0WHTwxlbhHfaTAXKwvWqMS62RaXETqlOp5AbNinihIDlAikSRR036L~~OMUEKUW6qodRHdR1ze3IJ7R3GRk1hPe8bRGwzPg__");
+    height: 80vh;
+}
+
+
+.card4 .subtitle4{
+    color: white;
+    margin-bottom: 40px;
+}
