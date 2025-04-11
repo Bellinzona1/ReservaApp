@@ -4,6 +4,7 @@ const cors = require("cors");
 const connectDB = require("./src/config/db");
 const userRoutes = require("./src/routes/user.routes");
 const EmprendimientoRoutes = require("./src/routes/emprendimiento.routes");
+const turnoRoutes = require("./src/routes/turnos.routes");
 
 
 
@@ -20,6 +21,8 @@ connectDB();
 // Rutas
 app.use("/api/users", userRoutes);
 app.use("/api/emprendimientos",EmprendimientoRoutes);
+app.use("/api/turnos", turnoRoutes);
+
 
 
 

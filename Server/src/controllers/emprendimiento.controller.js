@@ -81,7 +81,7 @@ const getEmprendimientoByUserId = async (req, res) => {
 const editEmprendimientoByUserId = async (req, res) => {
   try {
     const { id } = req.params; // Obtener el ID del usuario desde la URL
-    const { nombre, dominio,subdominio, descripcion, plantilla } = req.body; // Datos a actualizar
+    const { nombre, dominio, subdominio, descripcion, plantilla, hora } = req.body; // Datos a actualizar
 
     // Buscar el usuario y verificar si tiene un emprendimiento
     const user = await User.findById(id).populate("emprendimiento");
@@ -93,10 +93,16 @@ const editEmprendimientoByUserId = async (req, res) => {
       return res.status(404).json({ message: "El usuario no tiene un emprendimiento asignado" });
     }
 
+    // Construir el objeto de actualización dinámicamente
+    const updateData = { nombre, dominio, subdominio, descripcion, plantilla };
+    if (hora) {
+      updateData.hora = hora; // Agregar el campo "hora" si está presente en el req.body
+    }
+
     // Actualizar el emprendimiento
     const emprendimiento = await Emprendimiento.findByIdAndUpdate(
       user.emprendimiento._id,
-      { nombre, dominio, subdominio, descripcion, plantilla },
+      updateData,
       { new: true } // Devuelve el documento actualizado
     );
 
@@ -105,6 +111,7 @@ const editEmprendimientoByUserId = async (req, res) => {
       emprendimiento,
     });
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: "Error al actualizar el emprendimiento", error });
   }
 };
@@ -117,6 +124,9 @@ const getEmprendimientoByName = async (req, res) => {
     // Buscar el emprendimiento ignorando mayúsculas y tildes
     const emprendimiento = await Emprendimiento.findOne({
       dominio: { $regex: new RegExp(`^${name}$`, "i") },
+    }).populate({
+      path: "contenido.turnos", // Poblar los turnos dentro del emprendimiento
+      model: "Turno",
     });
 
     if (!emprendimiento) {
