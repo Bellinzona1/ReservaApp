@@ -1,0 +1,245 @@
+.CalendarContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%;
+  margin-top: 70px;
+  padding-bottom: 30px;
+
+}
+
+.calendar-wrapper {
+    padding: 20px;
+    overflow-x: auto;
+    width: 100%;
+    height: 70vh;
+
+  }
+
+ 
+  
+  /* Hint responsivo para scroll */
+  .calendar-scroll-hint {
+    font-size: 0.85rem;
+    text-align: center;
+    color: #555;
+    margin: 10px 0;
+    display: none;
+  }
+  
+  .calendar-table {
+    transform-origin: top left;
+    border-top: 1px solid #55555539;;
+    width: 100%;
+    background-color: white;
+  }
+  
+  .calendar-header {
+    display: grid;
+    grid-template-columns: 80px repeat(7, 1fr);
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .ReservaHowShow{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+    margin: 0 auto;
+    margin: 14px auto;
+  }
+
+
+
+  .howShows-Container{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .howShows{
+    padding: 5px;
+    background-color: white;
+    border-radius: 13px;
+    text-align: center;
+    width: 30%;
+    box-shadow: 0px 0px 10px -6px #000000;
+  }
+
+
+  .calendarSpace{
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    padding-top: 10px;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 20px;
+   
+  }
+  
+  .calendar-header-time {
+    background-color: #ededed;
+  }
+  
+  .calendar-header-day {
+    padding: 10px 0;
+    border-right: 1px solid #ccc;
+  }
+  
+  .day-name {
+    text-transform: lowercase;
+    font-size: 0.9rem;
+    display: block;
+  }
+  
+  .day-number {
+    font-size: 0.95rem;
+  }
+  
+  .calendar-body {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .calendar-row {
+    display: grid;
+    grid-template-columns: 80px repeat(7, 1fr);
+    border-bottom: 1px solid #ddd;
+    min-height: 50px;
+  }
+  
+  .calendar-time {
+    background-color: #ededed;
+    text-align: right;
+    padding: 0 10px;
+    font-size: 0.85rem;
+    color: #444;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  .calendar-cell {
+    border-right: 1px solid #eee;
+    background-color: white;
+    padding: 2px;
+  }
+  
+  .reserva-box {
+    padding: 4px;
+    border-radius: 4px;
+    background-color: #fff0f0;
+    font-size: 0.75rem;
+    line-height: 1.2;
+  }
+  
+  .spinner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .calendar-toolbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+    background-color: white;
+    padding-bottom: 10px;
+  }
+
+
+ 
+  
+  .calendar-btn {
+    background-color: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 3px 7px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #334155;
+    width: 20%;
+    box-shadow: 0px 0px 6px -3px #000000;
+    cursor: pointer;
+  }
+  
+  .calendar-date-nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    width: 40%;
+    color: #334155;
+    text-align: center;
+  }
+  
+  .calendar-date-range {
+    font-size: 0.7rem;
+  }
+
+
+  .calendar-disponibilidad {
+    font-size: 0.5rem;
+   }
+  
+  .calendar-arrow {
+    background-color: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 4px 8px;
+    font-size: 0.5rem;
+    font-weight: bold;
+    color: #334155;
+    cursor: pointer;
+    box-shadow: 0px 0px 6px -3px #000000;
+  }
+  
+  
+  /* 📱 Responsive para pantallas chicas */
+  @media (max-width: 768px) {
+    .calendar-scroll-hint {
+      display: block;
+    }
+  
+    .calendar-header-day,
+    .calendar-time {
+      font-size: 0.7rem;
+      padding: 4px 0;
+    }
+  
+    .calendar-time {
+      padding-right: 5px;
+    }
+  
+    .calendar-wrapper {
+      overflow-x: auto;
+      padding: 0;
+    }
+  
+    .calendar-table {
+      min-width: 700px;
+      font-size: 0.75rem;
+    }
+  
+    .calendar-row {
+      min-height: 45px;
+    }
+  
+    .reserva-box {
+      font-size: 0.7rem;
+    }
+  }
+  

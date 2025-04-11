@@ -8,6 +8,7 @@ import { AparienciaConfigurations } from "../components/AparienciaConfigurations
 import { TemaConfigurations } from "../components/TemaConfigurations";
 import { ClipLoader } from "react-spinners";
 import Swal from "sweetalert2";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export const HomePage = () => {
     const { user, userLog, setUser } = useAppContext();
@@ -19,6 +20,9 @@ export const HomePage = () => {
         apariencia: {},
         tema: null,
     });
+
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         if (!userLog?.userId) return;
@@ -134,15 +138,15 @@ export const HomePage = () => {
 
 
     const handleCopyLink = () => {
-    if (!emprendimiento?.dominio) {
-      alert("No hay dominio disponible.");
-      return;
-    }
+        if (!emprendimiento?.dominio) {
+            alert("No hay dominio disponible.");
+            return;
+        }
 
-    const link = `${window.location.origin}/tuturno/${emprendimiento.dominio}`;
+        const link = `${window.location.origin}/tuturno/${emprendimiento.dominio}`;
 
-    navigator.clipboard.writeText(link)
-      .then(Swal.fire({
+        navigator.clipboard.writeText(link)
+            .then(Swal.fire({
                 title: "Se copió el enlace",
                 icon: "success",
                 toast: true,
@@ -150,8 +154,8 @@ export const HomePage = () => {
                 timer: 2000,
                 showConfirmButton: false,
             }))
-      .catch((error) => console.error("Error al copiar el enlace:", error));
-  };
+            .catch((error) => console.error("Error al copiar el enlace:", error));
+    };
 
     return (
         <div className="home">
@@ -191,6 +195,10 @@ export const HomePage = () => {
 
 
                         )}
+
+                        <button className="btn-volver" onClick={() => navigate("/admin")}>
+                            Panel de control
+                        </button>
 
                         {emprendimiento ? (
                             <button className="btnGuardarHomePage" onClick={handleEditChanges}>

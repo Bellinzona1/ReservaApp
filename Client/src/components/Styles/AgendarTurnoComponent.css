@@ -1,0 +1,76 @@
+.schedule-container {
+    background-color: #5a637800;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.back-button-agendarComponent {
+    background-color: #3e4b6b;
+    border: none;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.dates-container {
+    display: flex;
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.date-button {
+    background-color: #bdbdbd;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.date-button.selected {
+    background-color: #4c5678;
+}
+
+.time-slots-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.time-slot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.schedule-button {
+    background-color: #fff;
+    color: #1e2a47;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.schedule-button .icon {
+    margin-right: 5px;
+}
+
+
+.date-button.selected {
+    background-color: #4c5678; /* Color para el día seleccionado */
+    color: #fff; /* Texto en blanco */
+}

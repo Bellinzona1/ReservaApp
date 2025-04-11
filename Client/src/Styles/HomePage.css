@@ -72,3 +72,31 @@
     stroke: #4C6EF5; /* Color del icono */
 }
 
+.btn-volver {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #FFF7E6; /* Color crema */
+    color: #E68A00; /* Naranja */
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 20px; /* Bordes redondeados */
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+    border: none;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-volver:hover {
+    background-color: #FFE5B4; /* Color más claro en hover */
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-volver svg {
+    stroke: #E68A00; /* Color del ícono */
+    width: 20px;
+    height: 20px;
+}

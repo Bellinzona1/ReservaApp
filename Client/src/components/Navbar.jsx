@@ -50,7 +50,7 @@ export const Navbar = ({ user }) => {
                     </div>
                     <div className="option">
                         <img src={calendar} alt="Calendario" />
-                        <a href="/home">Calendario</a>
+                        <a href="/calendar">Calendario</a>
                     </div>
                     <div className="option">
                         <img src={tarjeta} alt="Medios de pago" />

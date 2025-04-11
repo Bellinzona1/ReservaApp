@@ -1,0 +1,73 @@
+.turnos-wrapper-plantillaTres {
+    padding: 16px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+  .volverBtnPlantillaTurnos {
+    margin-bottom: 16px;
+    padding: 8px 16px;
+    border: none;
+    background-color: #444;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .turnos-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding-bottom: 20px;
+    text-align: center;
+  }
+  
+  .turno-card-plantillaTres {
+    flex: 0 0 80%;
+    scroll-snap-align: center;
+    background-color: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    position: relative;
+  }
+  
+  .turno-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .turno-info {
+    padding: 16px;
+    background-color: #1c1c1c;
+    color: white;
+  }
+  
+  .turno-info h3 {
+    font-size: 16px;
+    margin: 0 0 8px 0;
+  }
+  
+  .turno-info p {
+    margin: 4px 0;
+  }
+  
+  .agendar-btn {
+    margin-top: 8px;
+    padding: 8px 12px;
+    border: none;
+    background-color: white;
+    color: black;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  

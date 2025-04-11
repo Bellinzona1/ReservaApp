@@ -1,0 +1,75 @@
+.crearContainer {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.crearTurno {
+    background: white;
+    overflow: hidden;
+    position: relative;
+    padding: 20px;
+    border-radius: 10px;
+    width: 350px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.crearTitulo {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.crearForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.crearLabel {
+    margin-top: 10px;
+    width: 100%;
+    text-align: left;
+}
+
+.crearInput {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.crearButton {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.crearButton:hover {
+    background-color: #0056b3;
+}
+
+
+.cerrarBTN {
+    position: absolute;
+    padding: 10px 15px;
+    top: 0px;
+    background-color: red;
+    border-radius: 5px;
+    right:  -3px;
+    color: white;
+    cursor: pointer;
+}

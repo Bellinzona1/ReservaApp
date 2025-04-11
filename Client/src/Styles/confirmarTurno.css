@@ -1,0 +1,161 @@
+/* Contenedor principal del componente ConfirmarTurno */
+.confirmacion-container {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos para el título del componente */
+.confirmacion-container h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+/* Estilos para los detalles del turno */
+.confirmacion-container p {
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+/* Contenedor para los campos de formulario (nombre, teléfono) */
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Estilos para los campos de entrada (nombre y teléfono) */
+.input-field {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+/* Estilos para los botones de pago */
+.payment-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.payment-buttons button {
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #7b7b7b;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+
+
+
+
+/* Estilos para la imagen del turno */
+.turno-contenidoTurno-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.turno-contenidoTurno-container img {
+    width: 50%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.infoTurno-container{ 
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    color: black;
+}
+
+.infoTurno-container h3,h2 {
+    font-size: 10px;
+    font-weight: bold;
+    margin: 0px;
+}
+.infoTurno-container p {
+    font-size: 10px;
+    margin: 4px 0px;
+    text-align: start;
+    color: black;
+}
+
+.infoTurno-container h2 {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 10px 0px;
+    margin-bottom: 0px;
+    color: black;
+}
+
+/* Estilos para el total a abonar */
+.total-container {
+    background-color: #43141400;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #000000;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.total-container span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Botón "Confirmar pago" */
+.confirm-btn {
+    padding: 15px;
+    background-color: #fff1ec;
+    color: #000000;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.confirm-btn:hover {
+    background-color: #ffffff;
+}
+
+
+
+
+.payment-button.selected {
+    background-color: #00bcd4; /* Celeste cuando seleccionado */
+}
+.reserva-alerta {
+    color: red;
+    font-weight: bold;
+    margin: 1rem 0;
+    text-align: center;
+  }
+  
+
+

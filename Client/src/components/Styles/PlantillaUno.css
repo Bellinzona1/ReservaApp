@@ -6,6 +6,13 @@
     height: 100vh;
     background-color: #e0e0e0;
   }
+
+  .plantillaUno{
+    background-image: url("https://s3-alpha-sig.figma.com/img/033a/e163/cdcf917cae579cb99c9539eb80244d0f?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=PBlqzmTm-9KkVdEsNmou9urG1rhkm~H3ylDwdjyyqmlTHC8Id17MKj6YrsSGCPxtv3NRPK~jCbd2SD5D~lbU4vE~r2MDh2QQT959GNPVObxr2onPcs7wAoKnBUaAWl4mHMtJAoKrDp5mOq6YWJpEgUC8VCiE8YjcR2II58WfL0TdIOEHokXfhSwLplvYXxFCFfNymWgEmNHTVEOumhNWLrKyNSgy6DiWCpSXU0HeWvkVw0f4fNsSeh5TvuH6K90oLJDRZYuQPWp97VkiaUEAZa8ttZX7jP4S57oCHrEZzcL2Upi6rTYJnXJEgYkxy9iSyx5hDeBCM6l7NVrzmTKMEQ__");
+    background-repeat: no-repeat;      /* Evita que la imagen se repita */
+    background-size: cover;             /* Hace que la imagen se escale para cubrir todo el fondo */
+    background-position: center; 
+  }
   
   .card {
     border-radius: 20px;
@@ -16,7 +23,6 @@
     background-position: center;
     background-size: cover; /* ✅ Ajustar la imagen al contenedor */
     background-repeat: no-repeat;
-    background-image: url("https://s3-alpha-sig.figma.com/img/033a/e163/cdcf917cae579cb99c9539eb80244d0f?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=PBlqzmTm-9KkVdEsNmou9urG1rhkm~H3ylDwdjyyqmlTHC8Id17MKj6YrsSGCPxtv3NRPK~jCbd2SD5D~lbU4vE~r2MDh2QQT959GNPVObxr2onPcs7wAoKnBUaAWl4mHMtJAoKrDp5mOq6YWJpEgUC8VCiE8YjcR2II58WfL0TdIOEHokXfhSwLplvYXxFCFfNymWgEmNHTVEOumhNWLrKyNSgy6DiWCpSXU0HeWvkVw0f4fNsSeh5TvuH6K90oLJDRZYuQPWp97VkiaUEAZa8ttZX7jP4S57oCHrEZzcL2Upi6rTYJnXJEgYkxy9iSyx5hDeBCM6l7NVrzmTKMEQ__");
 }
 
   

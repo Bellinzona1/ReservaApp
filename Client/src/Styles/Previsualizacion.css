@@ -1,0 +1,22 @@
+.previsualizacion { 
+   margin: 0;
+   width: 80%;
+   overflow: hidden;
+   overflow-y: scroll;
+   height: 85%;
+   border-radius: 15px;
+}
+
+.containerPre{
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+
+.volverPre{
+   margin-top: 10px;
+}
+
+
+
