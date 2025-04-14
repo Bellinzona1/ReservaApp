@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../Styles/TemaConfigurations.css";
 import plantilla1 from "../assets/Plantilla1.png";
-import plantilla2 from "../assets/Plantilla2.png";
+import plantilla2 from "../assets/Plantilla2N.png";
 import plantilla3 from "../assets/Plantilla3.png";
 import plantilla4 from "../assets/Plantilla4.png";
 
