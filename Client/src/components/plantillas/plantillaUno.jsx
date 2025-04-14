@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../Styles/plantillaUno.css';
+import '../Styles/plantillaUnoN.css';
 import { PlantillaUnoTurnos } from './ReservaTurnos/PlantillaUnoTurnos';
 
 export const PlantillaUno = ({ emprendimiento }) => {
