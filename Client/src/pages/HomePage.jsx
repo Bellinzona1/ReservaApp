@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useAppContext } from "../store/appContext";
-import { MeProfile } from "../service/userService";
 import { EmprendimientoCreateById, getEmprendimientoByUserId, putEmprendimientoByUserId } from "../service/emprendimientosService";
 import "../Styles/HomePage.css";
 import { Navbar } from "../components/Navbar";
@@ -9,6 +8,7 @@ import { TemaConfigurations } from "../components/TemaConfigurations";
 import { ClipLoader } from "react-spinners";
 import Swal from "sweetalert2";
 import { Navigate, useNavigate } from "react-router-dom";
+import { MeProfile } from "../service/userServiceN";
 
 export const HomePage = () => {
     const { user, userLog, setUser } = useAppContext();
