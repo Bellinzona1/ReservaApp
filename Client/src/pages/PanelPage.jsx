@@ -58,7 +58,8 @@ export const PanelPage = ({ user }) => {
 
     const fetchEmprendimiento = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/turnos/emprendimiento/${user.emprendimiento._id}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/turnos/emprendimiento/${user.emprendimiento._id}`);
+
         if (!response.ok) throw new Error("Error al obtener los datos");
         const data = await response.json();
         setEmprendimiento(data);
@@ -143,7 +144,8 @@ export const PanelPage = ({ user }) => {
 
   const handleAddRed = async (name) => {
     try {
-      const response = await axios.post(`http://localhost:8080/api/emprendimientos/red/${user.emprendimiento._id}`, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/emprendimientos/red/${user.emprendimiento._id}`, {
+
         red: {
           nombre: name,
           url: socialLinks[name]
