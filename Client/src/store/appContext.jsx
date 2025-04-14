@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { login, logout, Register } from "../service/authService";
 import { jwtDecode } from "jwt-decode"; 
-import { MeProfile } from "../service/UserService";
 
 const AppContext = createContext();
 
@@ -22,16 +21,7 @@ export const AppProvider = ({ children }) => {
     }
   }, []);
 
-  
-  const fetchUserProfile = async (userId) => {
-    try {
-      const userData = await MeProfile(userId); // 🚀 Pasamos el ID del usuario
-      setUser(userData);
-    } catch (error) {
-      console.error("Error al obtener perfil:", error);
-      handleLogout();
-    }
-  };
+
 
   const handleLogin = async (email, password) => {
     try {
