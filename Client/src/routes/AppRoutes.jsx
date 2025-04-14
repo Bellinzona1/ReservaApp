@@ -7,7 +7,7 @@ import { PrincipalPage } from "../pages/PrincipalPage.jsx";
 import { PanelPage } from "../pages/PanelPage.jsx";
 import { useEffect, useState } from "react";
 import { CalendarPage } from "../pages/CalendarPage.jsx";
-import { MeProfile } from "../service/userService.js";
+import { MeProfile } from "../service/userServiceN.js";
 
 const AppRoutes = () => {
     const { userLog } = useAppContext();
