@@ -6,8 +6,8 @@ import { RegisterPage } from "../pages/RegisterPage.jsx";
 import { PrincipalPage } from "../pages/PrincipalPage.jsx";
 import { PanelPage } from "../pages/PanelPage.jsx";
 import { useEffect, useState } from "react";
-import { MeProfile } from "../service/userService.js";
 import { CalendarPage } from "../pages/CalendarPage.jsx";
+import { MeProfile } from "../service/userService.js";
 
 const AppRoutes = () => {
     const { userLog } = useAppContext();
