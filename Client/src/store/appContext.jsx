@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { login, logout, Register } from "../service/authService";
 import { jwtDecode } from "jwt-decode"; 
-import { MeProfile } from "../service/userService";
+import { MeProfile } from "../service/UserService";
 
 const AppContext = createContext();
 
