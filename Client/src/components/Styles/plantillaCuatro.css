@@ -9,7 +9,7 @@
 }
 
 .plantillaCuatro {
-    background-image: url("https://s3-alpha-sig.figma.com/img/4ed7/e90d/b903ce90d5a0034efa0381220b84cfb4?Expires=1744588800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=BMBy~Iu0NR3h2YNgf7WZ33U8lgWR~G0I8OWBE~KxIgOgT76YQOS7mZlAf1KLD0n~q1kI5h73j314YEOk541at3IXTbGVpPQHhwxK-znrB~quWPN0lBa4UIn~vkSlvJv2J1TgFeMMpduWX7Hsk8-EYEs2UKJZlF7DMjPMwxzHPJzOKrh0GPCOXj9NQ4pPquXw4QKCOLU7Gg2WQ5kcxHG8~njXDNb2N5C9Tt2UYcuipgpA2RsSc7HasFnYL1Xg6RDCBXkncRdpP2KQwnJRlWDiE--qPLyqNhbqq8gyPoWVYt4RKPNphfde2WtCSwN~myAL1VbDQSxcEDNaXvWg0GTJVg__");
+    background-image: url("../../assets/Fondos/Plantilla4Fondo.jpeg");
     background-repeat: no-repeat;      /* Evita que la imagen se repita */
     background-size: cover;             /* Hace que la imagen se escale para cubrir todo el fondo */
     background-position: center; 

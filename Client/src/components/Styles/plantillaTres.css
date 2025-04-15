@@ -3,7 +3,7 @@
 }
 
 .plantillaTres {
-    background-image: url("https://s3-alpha-sig.figma.com/img/5a4f/d9ee/b5852d8e66b49f4fd7d16a0527bd0d78?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=ozfigE38HyNNbXuktQhczmF54ARpwxoeUZZaChvlnqtWF94oBDgPcfFBPGdfIESvPPUmEXLFcqlx7ni4A~qh-eM2OzEs8pGtO8foGcBQ7yCDcPM9siPAXr1ZPNG-VHhYaSitg9Xa1GVS025dCMT5PcQLF3hH7mBfZFGNtOyHMVxEjAjLq8B4E5TfOmBqcFtNk7YWVqzbZ89lRKW3mDm~ZxEbYw3Io6skiZAmrpLrNczn-T7DBxJ8P3PlrfN0oyfqmRTYG24bQIY5ilGIbSSFZi3QlxHribnFPp5m3LBnkfudLE3nZIdkA79XbjRs2kETTCkwhc0BgQYD9taYOjH0vw__");
+    background-image: url("../../assets/Fondos/Plantilla3Fondo.jpeg");
     background-repeat: no-repeat;      /* Evita que la imagen se repita */
     background-size: cover;             /* Hace que la imagen se escale para cubrir todo el fondo */
     background-position: center; 
