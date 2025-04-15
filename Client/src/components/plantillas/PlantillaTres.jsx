@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import "../Styles/plantillaTres.css";
 import { PlantillaTresTurnos } from './ReservaTurnos/PlantillaTresTurnos';
+import ImagenAPlantilla3 from '../../assets/ImagenAPlantilla3.jpeg';
+
 
 export const PlantillaTres = ({ emprendimiento }) => {
   const [mostrarServicios, setMostrarServicios] = useState(false);
@@ -56,7 +58,7 @@ export const PlantillaTres = ({ emprendimiento }) => {
           {/* Imagen destacada */}
           <div className="main-img">
             <img
-              src="https://s3-alpha-sig.figma.com/img/27e1/835f/db852fa73a25dfdf831eecaefd7a37e3?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=PiXkjg8W40lDVC2CVbC~TmTth9-8rcqpPbOX5X4LZ2P8WZmnZKCQuqgd362kHz2LjUktPa8l33~S3P5Ma3kW5IlUGkdzMtU28uEejx-vhGXqPb3JvRxzHvtNppZKLjS95Im0oH8DL1IsfSoMgeFbs4ZqmfhVG3nxmluF8yDfhbb~Gq0Ikxk2sx6GCwkeJmCpaAgt5A-cuzH6llCnptrYltmooDy-4fbhePyK5rueq-etCuYzQJKlL4EikQmQ1qmzl6KdhE3HPDvOUWgZQnc4Ay-idoadCBOecYughQve~fqMCxQ4LBaScWDmelTXsVTI8rsRKcKb4YVqB7mDFigR4A__"
+              src={ImagenAPlantilla3}
               alt="Imagen destacada"
             />
           </div>
