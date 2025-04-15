@@ -3,7 +3,7 @@
 }
 
 .plantilla2 {
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)), url("https://s3-alpha-sig.figma.com/img/8c9a/d68f/5da090876e7919627057460156d0094f?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=dVFyUKC1IpwvBn0LD3HZ89OUKMwJH~xBujDacXYNU7wgn5rK~58fWE4JF9o0CzJp9jxM7Nmppdd1Cgnf8OARzo~3X-sSNDJGbga1flkN~SmtQRs88Y~AAQmTtO8nj0fmRRe7Z-Gx0wI7Im-y1V8cFBERnpK5IBdXPCXhWuJlCBlMb~LasMZAibZaP8eoT-3njRVL9R-RgWXYGi8xZemehAmaUMCjJX1uaqs0AOnb2HHPV7qPJGB3n6l7xv58qK~v3Jq7s8QtorOO8xv6E7pF06rDU3fIE3wqYRa9gLuvv7qlJBzh2~MTgOBmDEADvO1FMm9iUXWsszK4AW-HxBB0iQ__");
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)), url("../../assets/Fondos/Plantilla2Fondo.jpeg");
     background-repeat: no-repeat;      /* Evita que la imagen se repita */
     background-size: cover;             /* Hace que la imagen se escale para cubrir todo el fondo */
     background-position: center; 
