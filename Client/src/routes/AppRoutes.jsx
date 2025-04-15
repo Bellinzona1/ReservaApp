@@ -53,6 +53,7 @@ const AppRoutes = () => {
                 {!userLog ? (
                     <>
                         <Route path="*" element={<Navigate to="/login" replace />} />
+                        <Route path="/tuturno/:name" element={<PrincipalPage />} />
                         <Route path="/register" element={<RegisterPage />} />
                         <Route path="/login" element={<LoginPage />} />
                     </>
