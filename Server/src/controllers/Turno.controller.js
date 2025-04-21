@@ -134,11 +134,18 @@ const deleteTurno = async (req, res) => {
       return res.status(404).json({ message: "Turno no encontrado." });
     }
 
+    // ⚠️ Ajustá este modelo y campo a lo que uses realmente
+    await Emprendimiento.updateMany(
+      { "contenido.turnos": id },
+      { $pull: { "contenido.turnos": id } }
+    );
+
     res.json({ message: "Turno eliminado con éxito." });
   } catch (error) {
     res.status(500).json({ message: "Error al eliminar el turno.", error });
   }
 };
+
 
 module.exports = {
   createTurno,
