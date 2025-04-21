@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../Styles/AparienciaConfigurations.css';
 import { Switch, FormControlLabel } from "@mui/material";
+import Swal from 'sweetalert2';
 
 export const AparienciaConfigurations = ({ onConfigChange, emprendimiento }) => {
   const [configData, setConfigData] = useState({
@@ -60,6 +61,15 @@ export const AparienciaConfigurations = ({ onConfigChange, emprendimiento }) => 
     }
   };
 
+  const handleTemporal = () => {
+  
+    Swal.fire({
+      icon: 'info',
+      title: 'Este funcionalidad no está disponible',
+
+    })
+  }
+
   return (
     <div className='AparienciaConfigurations'>
       <p className='ConfigurationsTitle'>Editar apariencia</p>
@@ -84,13 +94,13 @@ export const AparienciaConfigurations = ({ onConfigChange, emprendimiento }) => 
           <div className="btnConfiguration">
             <button 
               className='elegirImagenBtn'
-              onClick={() => handleChange("imagen", "URL_DE_NUEVA_IMAGEN")} 
+              onClick={() => handleTemporal()} 
             >
               Elegir una imagen
             </button>
             <button 
               className='eliminarImagenBtn'
-              onClick={() => handleChange("imagen", "")}
+              onClick={() => handleTemporal()}
             >
               Eliminar imagen
             </button>

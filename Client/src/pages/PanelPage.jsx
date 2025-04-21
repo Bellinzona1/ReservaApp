@@ -20,6 +20,8 @@ export const PanelPage = ({ user }) => {
   const [loading, setLoading] = useState(true);
   const [showCrearTurno, setShowCrearTurno] = useState(false);
   const [showPrevisualizar, setShowPrevisualizar] = useState(false);
+  const [serviciosOriginales, setServiciosOriginales] = useState([]);
+
 
   const [selectedServices, setSelectedServices] = useState([]);
   const [hasChanges, setHasChanges] = useState(false);
@@ -65,6 +67,8 @@ export const PanelPage = ({ user }) => {
         setEmprendimiento(data);
         const serviciosExistentes = user.emprendimiento.contenido?.servicios || [];
         setSelectedServices(serviciosExistentes);
+        setServiciosOriginales(serviciosExistentes); // Esto representa lo que viene del backend
+
 
         // Cargar la disponibilidad horaria actual
         if (data.hora) {
@@ -111,25 +115,33 @@ export const PanelPage = ({ user }) => {
 
 
   const handleServiceToggle = async (service) => {
-    if (selectedServices.includes(service)) {
-      try {
-        // Llamada al backend para eliminar el servicio
-        console.log('Eliminando servicio:', service);
-        await DeleteService(user.emprendimiento._id, service);
-        Swal.fire('Eliminado!', 'El servicio ha sido eliminado con éxito.', 'success');
-
-        // Actualizar el estado local
-        setSelectedServices(selectedServices.filter((s) => s !== service));
-      } catch (error) {
-        console.log('Error al eliminar el servicio:', error);
-        Swal.fire('Error', 'No se pudo eliminar el servicio.', 'error');
+    const isMarked = selectedServices.includes(service);
+    const existsInDB = serviciosOriginales.includes(service);
+  
+    if (isMarked) {
+      if (existsInDB) {
+        try {
+          await DeleteService(user.emprendimiento._id, service);
+          Swal.fire('Eliminado!', 'El servicio ha sido eliminado con éxito.', 'success');
+          setSelectedServices((prev) => prev.filter((s) => s !== service));
+          setServiciosOriginales((prev) => prev.filter((s) => s !== service)); // importante!
+        } catch (error) {
+          console.error('Error al eliminar el servicio:', error);
+          Swal.fire('Error', 'No se pudo eliminar el servicio.', 'error');
+        }
+      } else {
+        // Solo está en frontend
+        setSelectedServices((prev) => prev.filter((s) => s !== service));
+        setHasChanges(true);
       }
     } else {
-      // Añadir servicio localmente
-      setSelectedServices([...selectedServices, service]);
+      setSelectedServices((prev) => [...prev, service]);
       setHasChanges(true);
     }
   };
+  
+  
+  
 
   const handleSaveServices = async () => {
     try {
