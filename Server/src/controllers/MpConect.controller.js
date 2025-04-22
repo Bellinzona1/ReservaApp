@@ -16,7 +16,7 @@ const conectarMercadoPago = async (req, res) => {
     try {
       const response = await axios.post("https://api.mercadopago.com/oauth/token", {
         grant_type: "authorization_code",
-        client_id: "4385724245174951",
+        client_id: "500944473460848",
         code,
         code_verifier,
         redirect_uri: "https://genuine-elf-ca9b01.netlify.app/conectmp"
