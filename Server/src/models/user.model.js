@@ -29,6 +29,14 @@ const UserSchema = new mongoose.Schema(
       ref: "Emprendimiento", // Conexión con el modelo Emprendimiento
       default: null, // Si el usuario no tiene, será null
     },
+    mercadoPagoToken: {
+      type: String,
+      default: null,
+    },
+    mercadoPagoUserId: {
+      type: String, 
+      default: null,
+    },
   },
   { timestamps: true }
 );
