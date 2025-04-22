@@ -23,6 +23,7 @@ export const ConectMpPage = () => {
         console.log("✅ Cuenta conectada", res.data);
       })
       .catch(err => {
+        console.log(err);
         console.error("❌ Error al conectar", err.response?.data || err.message);
       });
     }
