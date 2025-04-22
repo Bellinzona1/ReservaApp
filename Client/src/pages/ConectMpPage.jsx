@@ -1,3 +1,7 @@
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import axios from 'axios';
+
 export const ConectMpPage = ({user}) => {
     const [params] = useSearchParams();
     const [isConnecting, setIsConnecting] = useState(false);
