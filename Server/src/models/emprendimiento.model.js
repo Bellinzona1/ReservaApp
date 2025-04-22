@@ -21,7 +21,7 @@ const EmprendimientoSchema = new mongoose.Schema(
     },
     plantilla: {
       type: String,
-      default: "plantilla 1",
+      default: "1",
     },
     contenido: {
       turnos: [
