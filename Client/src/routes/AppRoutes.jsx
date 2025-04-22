@@ -67,7 +67,7 @@ const AppRoutes = () => {
                         <Route path="/Calendar" element={<CalendarPage user={user}></CalendarPage>} />
                         <Route path="/" element={<HomePage  />} />
                         <Route path="/User" element={<UserConfigurationsPage user={user}  />} />
-                        <Route path="/conectmp" element={<ConectMpPage />} />
+                        <Route path="/conectmp" element={<ConectMpPage user={user} />} />
 
                     </>
                 )}
