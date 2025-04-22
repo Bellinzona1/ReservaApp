@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CLIENT_ID = "4385724245174951"; // Usamos la variable de entorno para el CLIENT_ID
-const REDIRECT_URI = 'https://genuine-elf-ca9b01.netlify.app/admin'; // URL de redirección
+const REDIRECT_URI = 'https://genuine-elf-ca9b01.netlify.app/conectmp'; // URL de redirección
 
 export const UserConfigurationsPage = () => {
   const handleConnect = () => {
