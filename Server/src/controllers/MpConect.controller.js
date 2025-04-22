@@ -5,6 +5,9 @@ const axios = require("axios");
 
 const conectarMercadoPago = async (req, res) => {
     const { code, code_verifier } = req.body;
+
+
+    console.log("code", code);
   
     if (!code || !code_verifier) {
       return res.status(400).json({ message: "Faltan parámetros" });
@@ -28,7 +31,9 @@ const conectarMercadoPago = async (req, res) => {
       );
   
       res.json({ message: "Vinculación exitosa", user });
+      console.log("Usuario actualizado:", user);
     } catch (error) {
+      console.log(error);
       console.error("Error:", error.response?.data || error.message);
       res.status(500).json({ message: "Error al conectar con Mercado Pago", detalle: error.response?.data });
     }
