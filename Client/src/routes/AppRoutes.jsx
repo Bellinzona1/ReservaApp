@@ -8,6 +8,8 @@ import { PanelPage } from "../pages/PanelPage.jsx";
 import { useEffect, useState } from "react";
 import { CalendarPage } from "../pages/CalendarPage.jsx";
 import { MeProfile } from "../service/userServiceN.js";
+import { UserConfigurationsPage } from "../pages/UserConfigurationsPage.jsx";
+import { ConectMpPage } from "../pages/ConectMpPage.jsx";
 
 const AppRoutes = () => {
     const { userLog } = useAppContext();
@@ -64,6 +66,9 @@ const AppRoutes = () => {
                         <Route path="/admin" element={<PanelPage user={user} />} />
                         <Route path="/Calendar" element={<CalendarPage user={user}></CalendarPage>} />
                         <Route path="/" element={<HomePage  />} />
+                        <Route path="/User" element={<UserConfigurationsPage user={user}  />} />
+                        <Route path="/conectmp" element={<ConectMpPage />} />
+
                     </>
                 )}
             </Routes>
