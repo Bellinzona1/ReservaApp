@@ -1,7 +1,7 @@
 import React from 'react';
 import { generatePKCECodes } from '../utils/pkce';
 
-const CLIENT_ID = "500944473460848";
+const CLIENT_ID = "4385724245174951";
 const REDIRECT_URI = "https://genuine-elf-ca9b01.netlify.app/conectmp";
 
 export const UserConfigurationsPage = () => {
