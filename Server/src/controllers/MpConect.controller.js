@@ -4,7 +4,7 @@ const axios = require("axios");
 
 
 const conectarMercadoPago = async (req, res) => {
-    const { code, code_verifier } = req.body;
+    const { code, code_verifier, userId_body } = req.body;
 
 
     console.log("code", code);
@@ -26,7 +26,7 @@ const conectarMercadoPago = async (req, res) => {
       const { access_token, user_id } = response.data;
   
       const user = await User.findByIdAndUpdate(
-        req.userId,
+        userId_body,
         { mercadoPagoToken: access_token, mercadoPagoUserId: user_id },
         { new: true }
       );
