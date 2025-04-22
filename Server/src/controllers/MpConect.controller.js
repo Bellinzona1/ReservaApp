@@ -38,6 +38,7 @@ const conectarMercadoPago = async (req, res) => {
 
     res.json({ message: "Cuenta de Mercado Pago vinculada con éxito", user });
   } catch (error) {
+    console.log(error)
     console.error("Error al conectar con Mercado Pago:", error.response?.data || error.message);
     res.status(500).json({ message: "Error al conectar con Mercado Pago" });
   }
