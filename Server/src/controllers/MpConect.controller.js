@@ -1,5 +1,6 @@
-const axios = require("axios");
 const User = require("../models/user.model");
+const axios = require("axios");
+
 
 const conectarMercadoPago = async (req, res) => {
   const { code } = req.body;
