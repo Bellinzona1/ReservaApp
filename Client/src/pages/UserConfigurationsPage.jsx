@@ -1,33 +1,26 @@
 import React from 'react';
+import { generatePKCECodes } from '../utils/pkce';
 
-const CLIENT_ID = "4385724245174951"; // Usamos la variable de entorno para el CLIENT_ID
-const REDIRECT_URI = 'https://genuine-elf-ca9b01.netlify.app/conectmp'; // URL de redirección
+const CLIENT_ID = "4385724245174951";
+const REDIRECT_URI = "https://genuine-elf-ca9b01.netlify.app/conectmp";
 
 export const UserConfigurationsPage = () => {
-  const handleConnect = () => {
-    // Usamos el CLIENT_ID correctamente en la URL de autorización
-    const authUrl = `https://auth.mercadopago.com.ar/authorization?client_id=${CLIENT_ID}&response_type=code&platform_id=mp&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
-    window.location.href = authUrl; // Redirige al usuario para autenticar su cuenta de Mercado Pago
+  const handleConnect = async () => {
+    const { code_verifier, code_challenge } = await generatePKCECodes();
+
+    // Guardás el code_verifier para usarlo después en el backend
+    localStorage.setItem("mp_code_verifier", code_verifier);
+
+    const authUrl = `https://auth.mercadopago.com.ar/authorization?client_id=${CLIENT_ID}&response_type=code&platform_id=mp&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&code_challenge=${code_challenge}&code_challenge_method=S256`;
+
+    window.location.href = authUrl;
   };
 
   return (
     <div style={{ padding: '2rem' }}>
       <h2>Configuración de usuario</h2>
       <p>Conectá tu cuenta de Mercado Pago para aceptar pagos desde tu propia cuenta.</p>
-      <button
-        onClick={handleConnect}
-        style={{
-          padding: '10px 20px',
-          backgroundColor: '#00B1EA',
-          color: 'white',
-          border: 'none',
-          borderRadius: '5px',
-          fontSize: '16px',
-          cursor: 'pointer'
-        }}
-      >
-        Conectar con Mercado Pago
-      </button>
+      <button onClick={handleConnect}>Conectar con Mercado Pago</button>
     </div>
   );
 };
