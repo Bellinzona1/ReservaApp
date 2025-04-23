@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../Styles/plantillaTres.css';
 import { AgendarTurnoComponent } from '../../AgendarTurnoComponent';
 
-export const PlantillaTresTurnos = ({ emprendimientoTurnos, volver, emprendimientoHora }) => {
+export const PlantillaTresTurnos = ({ emprendimientoTurnos, volver, emprendimientoHora, emprendimiento }) => {
 
   const [turnoSeleccionado, setTurnoSeleccionado] = useState(null);
 
@@ -20,7 +20,7 @@ export const PlantillaTresTurnos = ({ emprendimientoTurnos, volver, emprendimien
   if (turnoSeleccionado) {
       return (
         <div className="turnos-container-plantillaUno">
-        <AgendarTurnoComponent turno={turnoSeleccionado} handleTurnoSeleccionado = {handleTurnoSeleccionado} />
+        <AgendarTurnoComponent turno={turnoSeleccionado} handleTurnoSeleccionado = {handleTurnoSeleccionado} emprendimiento={emprendimiento} />
         </div>
       );
     }

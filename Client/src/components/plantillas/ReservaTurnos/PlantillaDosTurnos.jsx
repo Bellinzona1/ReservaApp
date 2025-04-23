@@ -3,7 +3,7 @@ import '../Styles/plantillaDos.css';
 import { AgendarTurnoComponent } from '../../AgendarTurnoComponent';
 
 
-export const PlantillaDosTurnos = ({ emprendimientoTurnos, volver,emprendimientoHora }) => {
+export const PlantillaDosTurnos = ({ emprendimientoTurnos, volver,emprendimientoHora, emprendimiento  }) => {
     const [turnoSeleccionado, setTurnoSeleccionado] = useState(null);
 
     const handleTurnoSeleccionado = () => {
@@ -20,7 +20,7 @@ export const PlantillaDosTurnos = ({ emprendimientoTurnos, volver,emprendimiento
   if (turnoSeleccionado) {
       return (
         <div className="turnos-container-plantillaUno">
-        <AgendarTurnoComponent turno={turnoSeleccionado} handleTurnoSeleccionado = {handleTurnoSeleccionado} />
+        <AgendarTurnoComponent turno={turnoSeleccionado} handleTurnoSeleccionado = {handleTurnoSeleccionado} emprendimiento={emprendimiento} />
         </div>
       );
     }

@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './Styles/AgendarTurnoComponent.css';
 import { ConfirmarTurno } from './ConfirmarTurno';
 
-export const AgendarTurnoComponent = ({ turno, handleTurnoSeleccionado }) => {
+export const AgendarTurnoComponent = ({ turno, handleTurnoSeleccionado, emprendimiento }) => {
   const [startDate] = useState(new Date());
   const [selectedDay, setSelectedDay] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState(null);
@@ -77,6 +77,7 @@ export const AgendarTurnoComponent = ({ turno, handleTurnoSeleccionado }) => {
         fecha={format(selectedDay, 'yyyy-MM-dd')}
         hora={convertirHoraA24hs(selectedTime)}
         handleTurnoSeleccionado={handleTurnoSeleccionado}
+        emprendimiento={emprendimiento}
       />
     );
   }

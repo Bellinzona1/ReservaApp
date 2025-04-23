@@ -3,7 +3,7 @@ import '../Styles/plantillaUno.css';
 import { AgendarTurnoComponent } from '../../AgendarTurnoComponent';
 
 
-export const PlantillaUnoTurnos = ({ emprendimientoTurnos, volver,emprendimientoHora }) => {
+export const PlantillaUnoTurnos = ({ emprendimientoTurnos, volver,emprendimientoHora, emprendimiento }) => {
       const [turnoSeleccionado, setTurnoSeleccionado] = useState(null);
 
 
@@ -21,7 +21,7 @@ export const PlantillaUnoTurnos = ({ emprendimientoTurnos, volver,emprendimiento
   if (turnoSeleccionado) {
         return (
           <div className="turnos-container-plantillaUno">
-        <AgendarTurnoComponent turno={turnoSeleccionado} handleTurnoSeleccionado = {handleTurnoSeleccionado} />
+        <AgendarTurnoComponent turno={turnoSeleccionado} handleTurnoSeleccionado = {handleTurnoSeleccionado} emprendimiento={emprendimiento} />
           </div>
         );
       }

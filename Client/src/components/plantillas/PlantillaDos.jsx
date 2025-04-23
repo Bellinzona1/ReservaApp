@@ -15,6 +15,7 @@ export const PlantillaDos = ({ emprendimiento }) => {
     <div className="container plantilla2">
       {showTurnos ? (
         <PlantillaDosTurnos
+        emprendimiento={emprendimiento}
           emprendimientoHora={emprendimiento.hora}
           emprendimientoTurnos={emprendimiento.contenido.turnos}
           emprendimientoPlantilla="2"

@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import '../Styles/confirmarTurno.css';
 import { AddReserva } from '../service/reservas';
 import Swal from "sweetalert2";
+import axios from 'axios';
 
-export const ConfirmarTurno = ({ turno, fecha, hora, handleTurnoSeleccionado }) => {
+export const ConfirmarTurno = ({ turno, fecha, hora, handleTurnoSeleccionado, emprendimiento }) => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
   const [nombreCliente, setNombreCliente] = useState("");
   const [telefonoCliente, setTelefonoCliente] = useState("");
@@ -21,19 +22,11 @@ export const ConfirmarTurno = ({ turno, fecha, hora, handleTurnoSeleccionado }) 
     return `${h.toString().padStart(2, '0')}:${m.padStart(2, '0')}:00`;
   };
 
-  const handlePaymentSelect = (method) => {
-    if (method === 'mercadopago') {
-      Swal.fire({
-        icon: 'info',
-        title: '¡Próximamente!',
-        text: 'Por ahora esta opción no está disponible. Podés pagar en efectivo.',
-        confirmButtonText: 'Entendido',
-      });
-      return;
-    }
+  const handlePaymentSelect = async (method) => {
   
     setSelectedPaymentMethod(method);
   };
+  
   
 
   const handleConfirm = async () => {
@@ -59,13 +52,68 @@ export const ConfirmarTurno = ({ turno, fecha, hora, handleTurnoSeleccionado }) 
       return;
     }
 
-    const reserva = {
-      nombreCliente,
-      telefonoCliente,
-      pago: selectedPaymentMethod,
-      fecha: fechaCompleta.toISOString(), 
-      estado: "Confirmado",
-    };
+
+    
+
+
+    if (selectedPaymentMethod === 'mercadopago') {
+
+      const reserva = {
+        nombreCliente,
+        telefonoCliente,
+        pago: selectedPaymentMethod,
+        fecha: fechaCompleta.toISOString(), 
+      };
+
+      try {
+        const token = localStorage.getItem("token");
+        const valor50 = turno?.descripcion?.valor ? turno.descripcion.valor / 2 : 0;
+  
+        const response = await axios.post(
+          "https://reservaapp-zg71.onrender.com/api/mercadopago/crear-preferencia",
+          {
+            emprendimiento: emprendimiento,
+            price: valor50,
+            nombreCancha:  `${turno.titulo} -  ${turno.descripcion.nombre}`,
+            reserva: reserva,
+            turnoId: turno._id,
+
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+        );
+  
+        const { init_point } = response.data;
+  
+        // Redirigir a Mercado Pago
+        window.open(init_point, "_blank");
+      } catch (error) {
+        console.error("❌ Error al generar botón de pago:", error.response?.data || error.message);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudo generar el link de pago.',
+          confirmButtonText: 'Entendido',
+        });
+      }
+
+
+
+    } else if (selectedPaymentMethod === 'efectivo') {
+
+      const reserva = {
+        nombreCliente,
+        telefonoCliente,
+        pago: selectedPaymentMethod,
+        fecha: fechaCompleta.toISOString(), 
+        estado: "Confirmado",
+      };
+
+
+   
 
     try {
       await AddReserva(turno._id, reserva);
@@ -76,6 +124,21 @@ export const ConfirmarTurno = ({ turno, fecha, hora, handleTurnoSeleccionado }) 
       console.error(error);
       alert("Error al confirmar la reserva: " + error);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+    
   };
 
   useEffect(() => {
