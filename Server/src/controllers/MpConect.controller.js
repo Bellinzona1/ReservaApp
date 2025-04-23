@@ -56,7 +56,7 @@ const crearPreference = async (req, res) => {
     // 1. Guardar la reserva con estado "pendiente de pago"
     const nuevaReserva = new Reserva({
       ...reserva,
-      estado: "pendiente de pago",
+      estado: "pendiente",
       medio: "mercadopago"
     });
     await nuevaReserva.save();
