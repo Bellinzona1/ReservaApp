@@ -169,11 +169,16 @@ const webhookMP = async (req, res) => {
 
       // 4. Actualizar el estado y guardar
       if (payment.status === "approved") {
+
+        console.log("✅ Reserva:", reserva.estado);
         reserva.estado = "Confirmado";
+        console.log("✅ Reserva Post Cambio:", reserva.estado);
+
+        turno.markModified("reservas"); // 👈 le avisa a Mongoose que hubo cambios
 
         await turno.save();
 
-        console.log("✅ Reserva actualizada a 'pagado' en turno", turnoId);
+        console.log("✅ Reserva actualizada a 'Confirmado' en turno", turnoId);
       }
     }
 
