@@ -8,7 +8,7 @@ const { conectarMercadoPago, crearPreference, webhookMP } = require("../controll
 
 router.post("/token", conectarMercadoPago); // Crear turno (opcionalmente asociado a un emprendimiento)
 router.post("/crear-preferencia", crearPreference);
-app.post("/webhook", webhookMP);
+router.post("/webhook", webhookMP);
 
 
 
