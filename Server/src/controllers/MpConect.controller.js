@@ -62,8 +62,12 @@ const crearPreference = async (req, res) => {
 
     // 🚫 Verificar si ya hay una reserva en esa fecha y hora
     const yaReservado = turno.reservas.some(r =>
+      r.estado === "Confirmado" &&
       new Date(r.fecha).toISOString() === new Date(reserva.fecha).toISOString()
     );
+    
+
+    console.log("yaReservado", yaReservado);
 
     if (yaReservado) {
       return res.status(409).json({ message: "Ya existe una reserva para ese horario." });
