@@ -1,6 +1,6 @@
 const User = require("../models/user.model");
 const axios = require("axios");
-const Reserva = require("../models/reserva.model");
+const Reserva = require("../models/Reserva.model"); // Respeta la R mayúscula
 
 
 
