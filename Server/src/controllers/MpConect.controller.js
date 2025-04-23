@@ -46,6 +46,8 @@ const conectarMercadoPago = async (req, res) => {
 const crearPreference = async (req, res) => {
   const { emprendimiento, price, nombreCancha, reserva, turnoId } = req.body;
 
+  console.log(turnoId, "turnoId desde crearPreference");
+
   try {
     const user = await User.findOne({ emprendimiento: emprendimiento._id });
 
@@ -58,7 +60,16 @@ const crearPreference = async (req, res) => {
       return res.status(404).json({ message: "Turno no encontrado" });
     }
 
-    // 1. Agregar la reserva al array del turno
+    // 🚫 Verificar si ya hay una reserva en esa fecha y hora
+    const yaReservado = turno.reservas.some(r =>
+      new Date(r.fecha).toISOString() === new Date(reserva.fecha).toISOString()
+    );
+
+    if (yaReservado) {
+      return res.status(409).json({ message: "Ya existe una reserva para ese horario." });
+    }
+
+    // ✅ Agregar la nueva reserva
     const reservaPendiente = {
       ...reserva,
       estado: "pendiente"
@@ -66,6 +77,7 @@ const crearPreference = async (req, res) => {
 
     turno.reservas.push(reservaPendiente);
     await turno.save();
+
 
     // 2. Crear preferencia con external_reference = `${turnoId}|${fecha}`
     const externalRef = `${turnoId}|${reserva.fecha}`;
@@ -104,6 +116,8 @@ const crearPreference = async (req, res) => {
     res.status(500).json({ message: "No se pudo generar el link de pago", detalle: error.response?.data });
   }
 };
+
+
 
 const webhookMP = async (req, res) => {
   try {
