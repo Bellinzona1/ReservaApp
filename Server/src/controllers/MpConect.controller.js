@@ -1,6 +1,6 @@
 const User = require("../models/user.model");
 const axios = require("axios");
-const Reserva = require("../models/Reserva.model"); // Respeta la R mayúscula
+const Turno = require("../models/Turno.model");
 
 
 
@@ -44,7 +44,7 @@ const conectarMercadoPago = async (req, res) => {
 
 
 const crearPreference = async (req, res) => {
-  const { emprendimiento, price, nombreCancha, reserva } = req.body;
+  const { emprendimiento, price, nombreCancha, reserva, turnoId } = req.body;
 
   try {
     const user = await User.findOne({ emprendimiento: emprendimiento._id });
@@ -53,15 +53,23 @@ const crearPreference = async (req, res) => {
       return res.status(400).json({ message: "El emprendimiento no está vinculado a una cuenta de Mercado Pago" });
     }
 
-    // 1. Guardar la reserva con estado "pendiente de pago"
-    const nuevaReserva = new Reserva({
-      ...reserva,
-      estado: "pendiente",
-      medio: "mercadopago"
-    });
-    await nuevaReserva.save();
+    const turno = await Turno.findById(turnoId);
+    if (!turno) {
+      return res.status(404).json({ message: "Turno no encontrado" });
+    }
 
-    // 2. Crear la preferencia con external_reference = ID de la reserva
+    // 1. Agregar la reserva al array del turno
+    const reservaPendiente = {
+      ...reserva,
+      estado: "pendiente"
+    };
+
+    turno.reservas.push(reservaPendiente);
+    await turno.save();
+
+    // 2. Crear preferencia con external_reference = `${turnoId}|${fecha}`
+    const externalRef = `${turnoId}|${reserva.fecha}`;
+
     const response = await axios.post(
       "https://api.mercadopago.com/checkout/preferences",
       {
@@ -81,7 +89,7 @@ const crearPreference = async (req, res) => {
         },
         auto_return: "approved",
         notification_url: "https://reservaapp-zg71.onrender.com/api/mercadopago/webhook",
-        external_reference: nuevaReserva._id.toString()
+        external_reference: externalRef
       },
       {
         headers: {
@@ -97,8 +105,6 @@ const crearPreference = async (req, res) => {
   }
 };
 
-
-
 const webhookMP = async (req, res) => {
   try {
     const paymentId = req.query["data.id"];
@@ -107,44 +113,59 @@ const webhookMP = async (req, res) => {
     console.log("⚡ Webhook recibido:", { paymentId, topic });
 
     if (topic === "payment") {
-      // 🔎 Obtener los detalles del pago desde Mercado Pago
+      // 1. Obtener los detalles del pago desde Mercado Pago
       const paymentResponse = await axios.get(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
         headers: {
-          Authorization: `Bearer ${process.env.MP_ACCESS_TOKEN}` // Este es tu token personal de MP
+          Authorization: `Bearer ${process.env.MP_ACCESS_TOKEN}`
         }
       });
 
       const payment = paymentResponse.data;
 
-      console.log("🔍 Datos del pago:", {
-        id: payment.id,
-        status: payment.status,
-        external_reference: payment.external_reference
-      });
+      const externalRef = payment.external_reference;
+      if (!externalRef) {
+        console.warn("❗ Pago sin external_reference");
+        return res.status(400).send("Falta external_reference");
+      }
 
-      // ✅ Buscar la reserva con el external_reference
-      const reserva = await Reserva.findById(payment.external_reference);
+      const [turnoId, fechaRaw] = externalRef.split("|");
+      if (!turnoId || !fechaRaw) {
+        console.warn("❗ Formato de external_reference inválido:", externalRef);
+        return res.status(400).send("Formato incorrecto de external_reference");
+      }
 
-      if (reserva) {
-        reserva.estado = payment.status === "approved" ? "pagado" : "pendiente";
-        reserva.metodoPagoId = payment.id;
-        reserva.mercadoPagoStatus = payment.status;
-        reserva.payerEmail = payment.payer?.email || null;
+      // 2. Buscar el turno y la reserva embebida
+      const turno = await Turno.findById(turnoId);
+      if (!turno) {
+        console.warn("❗ Turno no encontrado:", turnoId);
+        return res.status(404).send("Turno no encontrado");
+      }
 
-        await reserva.save();
+      // 3. Buscar la reserva exacta por fecha
+      const reserva = turno.reservas.find(r => new Date(r.fecha).toISOString() === new Date(fechaRaw).toISOString());
 
-        console.log("✅ Reserva actualizada:", reserva._id);
-      } else {
-        console.warn("❗ No se encontró la reserva con ese external_reference:", payment.external_reference);
+      if (!reserva) {
+        console.warn("❗ Reserva no encontrada en el turno:", fechaRaw);
+        return res.status(404).send("Reserva no encontrada");
+      }
+
+      // 4. Actualizar el estado y guardar
+      if (payment.status === "approved") {
+        reserva.estado = "pagado";
+
+        await turno.save();
+
+        console.log("✅ Reserva actualizada a 'pagado' en turno", turnoId);
       }
     }
 
-    res.status(200).send("Webhook recibido");
+    res.status(200).send("Webhook procesado");
   } catch (error) {
     console.error("❌ Error en webhook:", error.response?.data || error.message);
     res.sendStatus(500);
   }
 };
+
 
 
 
