@@ -1,6 +1,7 @@
 const User = require("../models/user.model");
 const axios = require("axios");
 const Turno = require("../models/Turno.model");
+const { v4: uuidv4 } = require('uuid');
 
 
 
@@ -74,17 +75,20 @@ const crearPreference = async (req, res) => {
     }
 
     // ✅ Agregar la nueva reserva
+    const idReserva = uuidv4(); // 🆔 único para cada reserva
+
     const reservaPendiente = {
       ...reserva,
-      estado: "pendiente"
+      estado: "pendiente",
+      idReserva
     };
 
     turno.reservas.push(reservaPendiente);
     await turno.save();
+    
 
-
-    // 2. Crear preferencia con external_reference = `${turnoId}|${fecha}`
-    const externalRef = `${turnoId}|${reserva.fecha}`;
+    // 2. Crear preferencia con external_reference = `${turnoId}|${idReserva}`
+    const externalRef = `${turnoId}|${idReserva}`;
 
     const response = await axios.post(
       "https://api.mercadopago.com/checkout/preferences",
@@ -146,8 +150,8 @@ const webhookMP = async (req, res) => {
         return res.status(400).send("Falta external_reference");
       }
 
-      const [turnoId, fechaRaw] = externalRef.split("|");
-      if (!turnoId || !fechaRaw) {
+      const [turnoId, idReserva] = externalRef.split("|");
+      if (!turnoId || !idReserva) {
         console.warn("❗ Formato de external_reference inválido:", externalRef);
         return res.status(400).send("Formato incorrecto de external_reference");
       }
@@ -159,11 +163,11 @@ const webhookMP = async (req, res) => {
         return res.status(404).send("Turno no encontrado");
       }
 
-      // 3. Buscar la reserva exacta por fecha
-      const reserva = turno.reservas.find(r => new Date(r.fecha).toISOString() === new Date(fechaRaw).toISOString());
+      // 3. Buscar la reserva exacta por idReserva
+      const reserva = turno.reservas.find(r => r.idReserva === idReserva);
 
       if (!reserva) {
-        console.warn("❗ Reserva no encontrada en el turno:", fechaRaw);
+        console.warn("❗ Reserva no encontrada en el turno:", idReserva);
         return res.status(404).send("Reserva no encontrada");
       }
 
