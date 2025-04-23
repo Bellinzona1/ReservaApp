@@ -169,7 +169,7 @@ const webhookMP = async (req, res) => {
 
       // 4. Actualizar el estado y guardar
       if (payment.status === "approved") {
-        reserva.estado = "pagado";
+        reserva.estado = "Confirmado";
 
         await turno.save();
 
