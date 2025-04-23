@@ -8,6 +8,8 @@ export const ConfirmarTurno = ({ turno, fecha, hora, handleTurnoSeleccionado, em
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
   const [nombreCliente, setNombreCliente] = useState("");
   const [telefonoCliente, setTelefonoCliente] = useState("");
+  const [initPoint, setInitPoint] = useState(null); // 👈 nuevo estado
+
 
   const convertirHoraA24Formato = (hora12) => {
     if (!hora12) return null;
@@ -79,17 +81,16 @@ export const ConfirmarTurno = ({ turno, fecha, hora, handleTurnoSeleccionado, em
             turnoId: turno._id,
 
           },
+          
           {
             headers: {
               Authorization: `Bearer ${token}`
             }
           }
         );
+
+        setInitPoint(response.data.init_point); // ✅ Safari-friendly trigger
   
-        const { init_point } = response.data;
-  
-        // Redirigir a Mercado Pago
-        window.open(init_point, "_blank");
       } catch (error) {
         console.error("❌ Error al generar botón de pago:", error.response?.data || error.message);
         Swal.fire({
@@ -144,6 +145,20 @@ export const ConfirmarTurno = ({ turno, fecha, hora, handleTurnoSeleccionado, em
   useEffect(() => {
     console.log("Turno seleccionado:", turno);
   }, []);
+
+  useEffect(() => {
+    if (initPoint) {
+      const popup = window.open(initPoint, "_blank");
+      if (!popup) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Atención',
+          text: 'Tu navegador bloqueó la ventana de pago. Permití pop-ups o abrí manualmente.',
+        });
+      }
+      setInitPoint(null); // resetea el estado para evitar reintentos innecesarios
+    }
+  }, [initPoint]);
 
 
   const valor50 = turno?.descripcion?.valor ? turno.descripcion.valor / 2 : 0;

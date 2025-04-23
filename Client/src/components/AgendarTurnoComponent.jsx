@@ -31,9 +31,10 @@ export const AgendarTurnoComponent = ({ turno, handleTurnoSeleccionado, emprendi
     const [hourStr, minuteStr] = convertirHoraA24hs(time).split(':');
     const fechaEsperada = new Date(day);
     fechaEsperada.setHours(parseInt(hourStr), parseInt(minuteStr), 0, 0);
-
+  
     return turno?.reservas?.some((reserva) => {
-      const fechaReserva = new Date(reserva.fecha); // UTC
+      if (reserva.estado !== "Confirmado") return false; // ✅ Solo considerar confirmados
+      const fechaReserva = new Date(reserva.fecha);
       return (
         fechaReserva.getFullYear() === fechaEsperada.getFullYear() &&
         fechaReserva.getMonth() === fechaEsperada.getMonth() &&
@@ -43,6 +44,7 @@ export const AgendarTurnoComponent = ({ turno, handleTurnoSeleccionado, emprendi
       );
     });
   };
+  
 
   const handleAgendarTurno = (time) => {
     if (!selectedDay) {

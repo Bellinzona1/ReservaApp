@@ -24,11 +24,14 @@ export const CalendarPage = ({ user }) => {
         for (const id of user?.emprendimiento?.contenido?.turnos || []) {
           const turno = await getTurnoConReservas(id);
           turno.reservas.forEach((reserva) => {
-            reservasArray.push({
-              ...reserva,
-              titulo: turno.titulo,
-            });
+            if (reserva.estado === "Confirmado") {
+              reservasArray.push({
+                ...reserva,
+                titulo: turno.titulo,
+              });
+            }
           });
+          
         }
         setReservas(reservasArray);
         console.log("Reservas cargadas:", reservasArray);
