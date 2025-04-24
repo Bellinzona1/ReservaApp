@@ -7,10 +7,25 @@ import tarjeta from "../assets/tarjeta.png";
 import dinero from "../assets/dinero.png";
 import configuracion from "../assets/configuracion.png";
 import menuIcon from "../assets/menu.png";
+import { useBlockNavigation } from "../utils/useBlockNavigation";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export const Navbar = ({ user }) => {
     const [isOpen, setIsOpen] = useState(false);
     const menuRef = useRef(null); // 🚀 Referencia al navbarMobile
+
+    useBlockNavigation(
+        user.emprendimiento == null, // Si no hay emprendimiento, bloqueamos
+        (retryNavigate) => {
+            Swal.fire({
+                title: "Importante",
+                text: "No podés navegar sin un emprendimiento creado.",
+                icon: "warning",
+              
+            });
+        }
+    );
 
     // 🚀 Manejar clics fuera del menú para cerrarlo
     useEffect(() => {
@@ -50,15 +65,15 @@ export const Navbar = ({ user }) => {
                     </div>
                     <div className="option">
                         <img src={calendar} alt="Calendario" />
-                        <a href="/calendar">Calendario</a>
+                        <Link to="/calendar">Calendario</Link>
                     </div>
                     <div className="option">
                         <img src={tarjeta} alt="Medios de pago" />
-                        <a href="/home">Medios de pago</a>
+                        <Link to="/home">Medios de pago</Link>
                     </div>
                     <div className="option">
                         <img src={dinero} alt="Recaudación" />
-                        <a href="/home">Recaudación</a>
+                        <Link to="/home">Recaudación</Link>
                     </div>
                 </div>
 

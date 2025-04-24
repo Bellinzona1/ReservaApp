@@ -123,3 +123,24 @@
     padding: 10px ;
     color: white;
 }
+
+
+.reminderMessage {
+    width: 50%;
+    color: rgb(255, 0, 0);
+    padding: 4px 0px;
+    border-radius: 4px;
+    margin: 10px auto;
+    margin-bottom: 0px;
+    text-align: center;
+    font-weight: bold;
+    opacity: 1;
+    transform: translateY(-10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  
+  .animateReminder {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  

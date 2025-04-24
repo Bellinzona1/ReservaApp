@@ -61,13 +61,35 @@ const AppRoutes = () => {
                     </>
                 ) : (
                     <>
-                        <Route path="*" element={<Navigate to="/" replace />} />
-                        <Route path="/tuturno/:name" element={<PrincipalPage />} />
-                        <Route path="/admin" element={<PanelPage user={user} />} />
-                        <Route path="/Calendar" element={<CalendarPage user={user}></CalendarPage>} />
-                        <Route path="/" element={<HomePage  />} />
-                        <Route path="/User" element={<UserConfigurationsPage user={user}  />} />
-                        <Route path="/conectmp" element={<ConectMpPage user={user} />} />
+
+                        {!user?.emprendimiento ? (
+                            <>
+
+                                <Route path="*" element={<Navigate to="/" replace />} />
+                                <Route path="/" element={<HomePage />} />
+                                <Route path="/tuturno/:name" element={<PrincipalPage />} />
+
+                            </>
+
+
+                        ) : (
+
+                            <>
+
+                                <Route path="*" element={<Navigate to="/" replace />} />
+                                <Route path="/tuturno/:name" element={<PrincipalPage />} />
+                                <Route path="/admin" element={<PanelPage user={user} />} />
+                                <Route path="/Calendar" element={<CalendarPage user={user}></CalendarPage>} />
+                                <Route path="/" element={<HomePage />} />
+                                <Route path="/User" element={<UserConfigurationsPage user={user} />} />
+                                <Route path="/conectmp" element={<ConectMpPage user={user} />} />
+
+                            </>
+
+                        )}
+
+
+
 
                     </>
                 )}

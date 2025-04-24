@@ -9,6 +9,7 @@ import { ClipLoader } from "react-spinners";
 import Swal from "sweetalert2";
 import { Navigate, useNavigate } from "react-router-dom";
 import { MeProfile } from "../service/userServiceN";
+import { useBlockNavigation } from "../utils/useBlockNavigation";
 
 export const HomePage = () => {
     const { user, userLog, setUser } = useAppContext();
@@ -157,6 +158,8 @@ export const HomePage = () => {
             .catch((error) => console.error("Error al copiar el enlace:", error));
     };
 
+    
+
     return (
         <div className="home">
             {loading ? (
@@ -192,13 +195,16 @@ export const HomePage = () => {
 
 
 
-
-
                         )}
 
-                        <button className="btn-volver" onClick={() => navigate("/admin")}>
+                        {emprendimiento && (
+                            <button className="btn-volver" onClick={() => navigate("/admin")}>
                             Panel de control
                         </button>
+                            
+                        )}
+
+                        
 
                         {emprendimiento ? (
                             <button className="btnGuardarHomePage" onClick={handleEditChanges}>

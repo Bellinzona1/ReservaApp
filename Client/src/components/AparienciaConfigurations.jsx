@@ -13,6 +13,7 @@ export const AparienciaConfigurations = ({ onConfigChange, emprendimiento }) => 
     descripcion: "", 
   });
 
+  const [showReminder, setShowReminder] = useState(false);
   const [errorDominio, setErrorDominio] = useState(""); // 🚀 Estado para el mensaje de error
 
   // 🔹 Sincronizar `configData` con `emprendimiento` cuando cambie
@@ -36,22 +37,24 @@ export const AparienciaConfigurations = ({ onConfigChange, emprendimiento }) => 
 
   // 🔹 Función para actualizar `configData`
   const handleChange = (key, value) => {
+    if (!showReminder) {
+      setShowReminder(true);
+    }
+  
     if (key === "dominio") {
-      // 🔥 Evitar espacios en el dominio
       if (/\s/.test(value)) {
         setErrorDominio("No se permiten espacios en el dominio");
         return;
       } else {
-        setErrorDominio(""); // Limpiar mensaje de error si es válido
+        setErrorDominio("");
       }
-
-      // 🔥 Eliminar espacios automáticamente
+  
       value = value.replace(/\s/g, "");
-
+  
       setConfigData(prevConfig => ({
         ...prevConfig,
         dominio: value,
-        subdominio: `tuturno/${value}`, // 🔥 Actualizar subdominio automáticamente
+        subdominio: `tuturno/${value}`,
       }));
     } else {
       setConfigData(prevConfig => ({
@@ -60,6 +63,7 @@ export const AparienciaConfigurations = ({ onConfigChange, emprendimiento }) => 
       }));
     }
   };
+  
 
   const handleTemporal = () => {
   
@@ -142,6 +146,13 @@ export const AparienciaConfigurations = ({ onConfigChange, emprendimiento }) => 
           />
         </div>
       </div>
+      
+
+      {showReminder && (
+        <div className="reminderMessage">
+          <p>Cambios no guardados</p>
+        </div>
+      )}
     </div>
   );
 };
