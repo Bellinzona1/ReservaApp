@@ -77,6 +77,9 @@ export const Navbar = ({ user }) => {
                     </div>
                 </div>
 
+
+                <Link to="/user" className="option">
+
                 <div className="userContainer">
                     <div className="userInfo">
                         <img src={user.imageProfile} alt="Perfil" />
@@ -87,6 +90,8 @@ export const Navbar = ({ user }) => {
                         <img src={configuracion} alt="Configuración" className="configuracionUser" />
                     </div>
                 </div>
+
+                </Link>
             </div>
         </div>
     );
