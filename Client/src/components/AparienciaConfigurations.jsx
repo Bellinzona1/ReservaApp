@@ -3,7 +3,7 @@ import '../Styles/AparienciaConfigurations.css';
 import { Switch, FormControlLabel } from "@mui/material";
 import Swal from 'sweetalert2';
 
-export const AparienciaConfigurations = ({ onConfigChange, emprendimiento }) => {
+export const AparienciaConfigurations = ({ onConfigChange, emprendimiento,setShowReminder,showReminder }) => {
   const [configData, setConfigData] = useState({
     soloNegocio: false,
     imagen: "https://donpotrero.com/img/posts/2/medidas_sm.jpg",
@@ -13,7 +13,6 @@ export const AparienciaConfigurations = ({ onConfigChange, emprendimiento }) => 
     descripcion: "", 
   });
 
-  const [showReminder, setShowReminder] = useState(false);
   const [errorDominio, setErrorDominio] = useState(""); // 🚀 Estado para el mensaje de error
 
   // 🔹 Sincronizar `configData` con `emprendimiento` cuando cambie
@@ -34,6 +33,8 @@ export const AparienciaConfigurations = ({ onConfigChange, emprendimiento }) => 
   useEffect(() => {
     onConfigChange(configData);
   }, [configData]);
+
+  
 
   // 🔹 Función para actualizar `configData`
   const handleChange = (key, value) => {
@@ -78,18 +79,7 @@ export const AparienciaConfigurations = ({ onConfigChange, emprendimiento }) => 
     <div className='AparienciaConfigurations'>
       <p className='ConfigurationsTitle'>Editar apariencia</p>
 
-      <div className="soloNegocioButton">
-        <FormControlLabel
-          control={
-            <Switch
-              checked={configData.soloNegocio}
-              onChange={(e) => handleChange("soloNegocio", e.target.checked)}
-              color="primary"
-            />
-          }
-          label="Solo negocio"
-        />
-      </div>
+      
 
       <div className="configurations">
         <div className="imagenSelection">

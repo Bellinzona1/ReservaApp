@@ -28,7 +28,7 @@ export const UserConfigurationsPage = ({ user }) => {
         <p><strong>{user?.name}</strong></p>
 
         {!user?.mercadoPagoToken ? (
-          <button onClick={handleConnect}>
+          <button onClick={handleConnect} style={{ backgroundColor: "#1313f5", color: "white", padding: "10px", border: "none", borderRadius: "5px", cursor: "pointer" }}>
             🔄 Conectar con Mercado Pago
           </button>
         ) : (

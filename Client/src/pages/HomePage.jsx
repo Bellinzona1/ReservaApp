@@ -15,6 +15,8 @@ export const HomePage = () => {
     const { user, userLog, setUser } = useAppContext();
     const [loading, setLoading] = useState(true);
     const [emprendimiento, setEmprendimiento] = useState(null);
+    const [showReminder, setShowReminder] = useState(false);
+    
 
     // 🚀 Estado para almacenar la configuración
     const [configData, setConfigData] = useState({
@@ -63,6 +65,11 @@ export const HomePage = () => {
 
     // ✅ Función para guardar un nuevo emprendimiento
     const handleSaveChanges = async () => {
+
+        setShowReminder(false); // Ocultar el recordatorio al guardar cambios
+
+
+
         if (!userLog?.userId) {
             Swal.fire("Error", "No hay usuario logueado.", "error");
             return;
@@ -101,6 +108,9 @@ export const HomePage = () => {
 
     // ✅ Función para editar un emprendimiento existente
     const handleEditChanges = async () => {
+        setShowReminder(false); // Ocultar el recordatorio al guardar cambios
+
+        
         if (!userLog?.userId) {
             Swal.fire("Error", "No hay usuario logueado.", "error");
             return;
@@ -174,6 +184,8 @@ export const HomePage = () => {
                         <AparienciaConfigurations
                             emprendimiento={emprendimiento}
                             onConfigChange={(data) => handleConfigChange("apariencia", data)}
+                            setShowReminder={setShowReminder}
+                            showReminder={showReminder}
                         />
                         <TemaConfigurations
                             emprendimiento={emprendimiento}
