@@ -12,6 +12,13 @@ export const ConectMpPage = ({ user }) => {
     const token = localStorage.getItem("token");
     const code_verifier = localStorage.getItem("mp_code_verifier");
 
+
+    console.log("code", code);
+    console.log("token", token);
+    console.log("code_verifier", code_verifier);
+    console.log("user", user);
+    console.log("userId", user?._id);
+
     if (code && token && code_verifier && user && user._id) {
       setIsConnecting(true);
 

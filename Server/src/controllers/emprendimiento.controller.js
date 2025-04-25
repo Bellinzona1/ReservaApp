@@ -60,9 +60,6 @@ const getEmprendimientoByUserId = async (req, res) => {
     // Buscar el usuario y traer su emprendimiento relacionado
     const user = await User.findById(id).populate("emprendimiento");
 
-    console.log(user)
-
-
     if (!user) {
       return res.status(404).json({ message: "Usuario no encontrado" });
     }
