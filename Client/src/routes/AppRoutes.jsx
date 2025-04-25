@@ -69,6 +69,9 @@ const AppRoutes = () => {
                                 <Route path="/" element={<HomePage />} />
                                 <Route path="/tuturno/:name" element={<PrincipalPage />} />
                                 <Route path="/User" element={<UserConfigurationsPage user={user} />} />
+                                <Route path="/conectmp" element={<ConectMpPage user={user} />} />
+                                
+
 
 
                             </>
