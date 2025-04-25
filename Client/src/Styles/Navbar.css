@@ -174,7 +174,7 @@
 }
 
 
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 400px) {
     .userContainer .userInfo {
       flex-direction: row;
       align-items: center;
