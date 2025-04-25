@@ -1,14 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
-import '../Styles/ConectMpPage.css';
+import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 
 export const ConectMpPage = ({ user }) => {
   const [params] = useSearchParams();
-  const navigate = useNavigate();
   const [isConnecting, setIsConnecting] = useState(false);
-  const [isConnected, setIsConnected] = useState(false);
-  const [countdown, setCountdown] = useState(5);
+  const [initPoint, setInitPoint] = useState(null);
 
   useEffect(() => {
     const code = params.get("code");
@@ -27,16 +24,17 @@ export const ConectMpPage = ({ user }) => {
           Authorization: `Bearer ${token}`
         }
       })
-      .then(() => {
+      .then(res => {
+        console.log("✅ Cuenta conectada", res.data);
         return axios.post("https://reservaapp-zg71.onrender.com/api/mercadopago/crear-preferencia", {}, {
           headers: {
             Authorization: `Bearer ${token}`
           }
         });
       })
-      .then(() => {
+      .then(res => {
+        setInitPoint(res.data.init_point);
         setIsConnecting(false);
-        setIsConnected(true);
       })
       .catch(err => {
         console.error("❌ Error", err.response?.data || err.message);
@@ -45,38 +43,16 @@ export const ConectMpPage = ({ user }) => {
     }
   }, [params, user]);
 
-  // Manejar redirección cuando se conectó exitosamente
-  useEffect(() => {
-    if (isConnected && countdown > 0) {
-      const timer = setTimeout(() => setCountdown(prev => prev - 1), 1000);
-      return () => clearTimeout(timer);
-    } else if (isConnected && countdown === 0) {
-      navigate("/");
-    }
-  }, [isConnected, countdown, navigate]);
-
   if (!user) return <p>Cargando usuario...</p>;
 
   return (
-    <div style={{ height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
-      {isConnecting && (
-        <div style={{ textAlign: "center" }}>
-          <div className="spinner" />
-          <p style={{ marginTop: "10px" }}>Cargando conexión con Mercado Pago...</p>
-        </div>
-      )}
-
-      {isConnected && (
-        <div style={{
-          backgroundColor: "#28a745",
-          color: "white",
-          padding: "2rem",
-          borderRadius: "10px",
-          textAlign: "center"
-        }}>
-          <h2>✅ Te conectaste correctamente con Mercado Pago</h2>
-          <p>Te redireccionaremos en {countdown} segundos...</p>
-        </div>
+    <div>
+      <h2>Conectar con Mercado Pago</h2>
+      {isConnecting && <p>Procesando conexión...</p>}
+      {initPoint && (
+        <a href={initPoint} target="_blank" rel="noopener noreferrer">
+          <button>Pagar reserva en {user.emprendimiento?.nombre}</button>
+        </a>
       )}
     </div>
   );

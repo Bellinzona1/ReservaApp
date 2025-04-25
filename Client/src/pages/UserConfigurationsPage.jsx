@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import "../Styles/UserConfigurationsPage.css";
+import { Navbar } from "../components/Navbar";
 
 export const UserConfigurationsPage = ({ user }) => {
   const [initPoint, setInitPoint] = useState(null);
@@ -12,47 +14,45 @@ export const UserConfigurationsPage = ({ user }) => {
     window.location.href = authUrl;
   };
 
-  const handleGeneratePayment = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/api/mercadopago/crear-preferencia",
-        { userId_body: user._id },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setInitPoint(response.data.init_point);
-    } catch (error) {
-      console.error("❌ Error al crear el botón de pago", error.response?.data || error.message);
-    }
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Elimina el token
+    window.location.reload();          // Recarga la página
   };
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h2>Configuración de Usuario</h2>
-      <p>Tu cuenta: <strong>{user?.email}</strong></p>
+    <div className="home">
+      <Navbar user={user} />
 
-      {!user?.mercadoPagoToken ? (
-        <button onClick={handleConnect}>
-          🔄 Conectar con Mercado Pago
-        </button>
-      ) : (
-        <>
-          <button onClick={handleGeneratePayment}>
-            💳 Generar botón de pago
+      <div className="userConfigurationsPage">
+        <h2>Configuración de Usuario</h2>
+        <p><strong>{user?.name}</strong></p>
+
+        {!user?.mercadoPagoToken ? (
+          <button onClick={handleConnect} style={{ backgroundColor: "#1313f5", color: "white", padding: "10px", border: "none", borderRadius: "5px", cursor: "pointer" }}>
+            🔄 Conectar con Mercado Pago
           </button>
+        ) : (
+          <>
+            <p>Tu cuenta está conectada a Mercado Pago</p>
 
-          {initPoint && (
-            <div style={{ marginTop: "1rem" }}>
-              <a href={initPoint} target="_blank" rel="noopener noreferrer">
-                Ir a pagar con Mercado Pago
-              </a>
-            </div>
-          )}
-        </>
-      )}
+            {initPoint && (
+              <div style={{ marginTop: "1rem" }}>
+                <a href={initPoint} target="_blank" rel="noopener noreferrer">
+                  Ir a pagar con Mercado Pago
+                </a>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* Botón de Cerrar sesión */}
+        <button 
+          onClick={handleLogout} 
+          style={{ marginTop: "2rem", backgroundColor: "#ff4d4f", color: "white", padding: "10px", border: "none", borderRadius: "5px", cursor: "pointer" }}
+        >
+          🚪 Cerrar Sesión
+        </button>
+      </div>
     </div>
   );
 };

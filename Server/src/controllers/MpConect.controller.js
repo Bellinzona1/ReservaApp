@@ -44,6 +44,31 @@ const conectarMercadoPago = async (req, res) => {
 };
 
 
+const desconectarMercadoPago = async (req, res) => {
+  try {
+    const {userId} = req.body; 
+
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { mercadoPagoToken: null, mercadoPagoUserId: null },
+      { new: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+
+    console.log("Usuario desconectado de Mercado Pago:", user);
+    res.json({ message: "Cuenta de Mercado Pago desconectada con éxito", user });
+  } catch (error) {
+    console.error("Error al desconectar Mercado Pago:", error);
+    res.status(500).json({ message: "Error al desconectar Mercado Pago" });
+  }
+};
+
+
+
 const crearPreference = async (req, res) => {
   const { emprendimiento, price, nombreCancha, reserva, turnoId } = req.body;
 
@@ -199,5 +224,6 @@ const webhookMP = async (req, res) => {
 module.exports = {
   conectarMercadoPago,
   crearPreference,
-  webhookMP
+  webhookMP,
+  desconectarMercadoPago,
 };
