@@ -138,7 +138,7 @@ const crearPreference = async (req, res) => {
       },
       {
         headers: {
-          Authorization: `Bearer APP_USR-4385724245174951-042115-f81d75bc9560784bccac06382710b163-1716243481`
+          Authorization: `Bearer ${user.mercadoPagoToken}`
         }
       }
     );
