@@ -115,6 +115,15 @@ const crearPreference = async (req, res) => {
     // 2. Crear preferencia con external_reference = `${turnoId}|${idReserva}`
     const externalRef = `${turnoId}|${idReserva}`;
 
+    console.log("---------------------------------------------------------");
+
+
+    console.log("MercadoPago Token", user.mercadoPagoToken);  
+
+
+    console.log("---------------------------------------------------------");
+
+
     const response = await axios.post(
       "https://api.mercadopago.com/checkout/preferences",
       {
