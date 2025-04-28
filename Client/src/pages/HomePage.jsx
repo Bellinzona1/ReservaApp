@@ -120,6 +120,7 @@ export const HomePage = () => {
             nombre: configData.apariencia.nombreEmprendimiento,
             descripcion: configData.apariencia.descripcion,
             subdominio: "subdominio",
+            imagen: configData.apariencia.imagen,
             dominio: configData.apariencia.dominio,
             plantilla: configData.tema,
         };

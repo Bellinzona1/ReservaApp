@@ -77,10 +77,10 @@ const getEmprendimientoByUserId = async (req, res) => {
 
 const editEmprendimientoByUserId = async (req, res) => {
   try {
-    const { id } = req.params; // Obtener el ID del usuario desde la URL
-    const { nombre, dominio, subdominio, descripcion, plantilla, hora } = req.body; // Datos a actualizar
+    const { id } = req.params;
+    const { nombre, dominio, subdominio, imagen, descripcion, plantilla, hora } = req.body;
 
-    // Buscar el usuario y verificar si tiene un emprendimiento
+    // Buscar el usuario y su emprendimiento
     const user = await User.findById(id).populate("emprendimiento");
     if (!user) {
       return res.status(404).json({ message: "Usuario no encontrado" });
@@ -90,28 +90,37 @@ const editEmprendimientoByUserId = async (req, res) => {
       return res.status(404).json({ message: "El usuario no tiene un emprendimiento asignado" });
     }
 
-    // Construir el objeto de actualización dinámicamente
-    const updateData = { nombre, dominio, subdominio, descripcion, plantilla };
-    if (hora) {
-      updateData.hora = hora; // Agregar el campo "hora" si está presente en el req.body
-    }
+    // Traemos el emprendimiento actual
+    const emprendimientoActual = user.emprendimiento;
+
+    // Armamos el objeto de actualización usando valores nuevos si existen, sino los viejos
+    const updateData = {
+      nombre: nombre !== undefined ? nombre : emprendimientoActual.nombre,
+      dominio: dominio !== undefined ? dominio : emprendimientoActual.dominio,
+      subdominio: subdominio !== undefined ? subdominio : emprendimientoActual.subdominio,
+      imagen: imagen !== undefined ? imagen : emprendimientoActual.imagen,
+      descripcion: descripcion !== undefined ? descripcion : emprendimientoActual.descripcion,
+      plantilla: plantilla !== undefined ? plantilla : emprendimientoActual.plantilla,
+      hora: hora !== undefined ? hora : emprendimientoActual.hora,
+    };
 
     // Actualizar el emprendimiento
-    const emprendimiento = await Emprendimiento.findByIdAndUpdate(
-      user.emprendimiento._id,
+    const emprendimientoActualizado = await Emprendimiento.findByIdAndUpdate(
+      emprendimientoActual._id,
       updateData,
-      { new: true } // Devuelve el documento actualizado
+      { new: true } // para que devuelva el actualizado
     );
 
     res.json({
       message: "Emprendimiento actualizado con éxito",
-      emprendimiento,
+      emprendimiento: emprendimientoActualizado,
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(500).json({ message: "Error al actualizar el emprendimiento", error });
   }
 };
+
 
 
 const getEmprendimientoByName = async (req, res) => {

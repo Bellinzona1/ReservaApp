@@ -99,8 +99,49 @@ const createUser = async (req, res) => {
   };
   
 
+  const updateUser = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { name, email, password, imageProfile, accountStatus } = req.body;
+  
+      const user = await User.findById(id);
+      if (!user) {
+        return res.status(404).json({ message: "Usuario no encontrado" });
+      }
+  
+      // Actualizar los campos si se envían en la request
+      if (name !== undefined) user.name = name;
+      if (email !== undefined) user.email = email;
+      if (imageProfile !== undefined) user.imageProfile = imageProfile;
+      if (accountStatus !== undefined) user.accountStatus = accountStatus;
+  
+      // Si mandan password nueva, la hasheamos
+      if (password) {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        user.password = hashedPassword;
+      }
+  
+      await user.save();
+  
+      res.json({
+        message: "Usuario actualizado con éxito",
+        user: {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          imageProfile: user.imageProfile,
+          accountStatus: user.accountStatus,
+        },
+      });
+    } catch (error) {
+      console.error("Error actualizando usuario:", error);
+      res.status(500).json({ message: "Error al actualizar el usuario" });
+    }
+  };
+  
+
       
         
 
 
-module.exports = { getUsers, createUser,loginUser,getUser };
+module.exports = { getUsers, createUser,loginUser,getUser,updateUser };
