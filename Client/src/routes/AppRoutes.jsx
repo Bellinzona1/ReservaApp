@@ -10,6 +10,7 @@ import { ConectMpPage } from "../pages/ConectMpPage.jsx";
 import { useAppContext } from "../store/appContext.jsx";
 import { useEffect, useState } from "react";
 import { MeProfile } from "../service/userServiceN.js";
+import { RecaudacionPage } from "../pages/RecaudacionPage.jsx";
 
 const AppRoutes = () => {
   const { userLog } = useAppContext();
@@ -58,6 +59,7 @@ const AppRoutes = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/User" element={<UserConfigurationsPage user={user} />} />
       <Route path="/conectmp" element={<ConectMpPage user={user} />} />
+      <Route path="/recaudacion" element={<RecaudacionPage user={user} />} />
       <Route path="/tuturno/:name" element={<PrincipalPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </>
@@ -70,6 +72,7 @@ const AppRoutes = () => {
       <Route path="/calendar" element={<CalendarPage user={user} />} />
       <Route path="/User" element={<UserConfigurationsPage user={user} />} />
       <Route path="/conectmp" element={<ConectMpPage user={user} />} />
+      <Route path="/recaudacion" element={<RecaudacionPage user={user} />} />
       <Route path="/tuturno/:name" element={<PrincipalPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </>

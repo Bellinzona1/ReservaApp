@@ -1,0 +1,121 @@
+.Recaudacion-Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: #f4f4f4;
+  }  
+  
+  
+  .dashboard-cards {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 40px;
+    margin-bottom: 2rem;
+    justify-content: center;
+    padding: 0px ;
+    width: 95%;
+    overflow-x: scroll;
+  }
+  
+  .card-Recaudacion {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    padding: 1rem 1.5rem;
+    flex: 1;
+    max-width: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    transition: 0.3s ease;
+  }
+  
+  .card-Recaudacion:hover {
+    transform: translateY(-4px);
+  }
+  
+  .card-Recaudacion .title {
+    font-size: 0.9rem;
+    color: #7b7b7b;
+  }
+  
+  .card-Recaudacion .value {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #212121;
+  }
+  
+  .card-Recaudacion .change {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  
+  .positive {
+    color: #38d39f;
+    background-color: #38d39f20;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .negative {
+    color: #ef5a5a;
+    background-color:#ef5a5a20; ;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .ventas-section {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    width: 80%;
+  }
+  
+  .ventas-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .ventas-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  .barras-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .barras {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-end;
+    height: 200px;
+    padding-bottom: 1rem;
+  }
+  
+  .barras .mes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .barras .bar-ingreso {
+    background-color: #326fff;
+    width: 20px;
+    border-radius: 4px;
+  }
+  
+  .barras .bar-resultado {
+    background-color: #a3bfff;
+    width: 20px;
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+  

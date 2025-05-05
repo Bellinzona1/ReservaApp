@@ -73,7 +73,7 @@ export const Navbar = ({ user }) => {
                     </div>
                     <div className="option">
                         <img src={dinero} alt="Recaudación" />
-                        <Link to="/home">Recaudación</Link>
+                        <Link to="/recaudacion">Recaudación</Link>
                     </div>
                 </div>
 

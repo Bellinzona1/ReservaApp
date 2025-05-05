@@ -23,7 +23,7 @@ const getTurnoConReservas = async (req, res) => {
 const agregarReserva = async (req, res) => {
   try {
     const { id } = req.params;
-    const { nombreCliente,telefonoCliente,pago, fecha, estado } = req.body;
+    const { nombreCliente,telefonoCliente,pago, fecha, estado, price } = req.body;
 
     const turno = await Turno.findById(id);
 
@@ -35,7 +35,7 @@ const agregarReserva = async (req, res) => {
       return res.status(404).json({ mensaje: "Turno no encontrado" });
     }
 
-    const nuevaReserva = { nombreCliente,telefonoCliente,pago, fecha, estado };
+    const nuevaReserva = { nombreCliente,telefonoCliente,pago, fecha, estado, price };
     turno.reservas.push(nuevaReserva);
 
     await turno.save();

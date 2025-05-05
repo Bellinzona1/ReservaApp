@@ -60,16 +60,19 @@ export const ConfirmarTurno = ({ turno, fecha, hora, handleTurnoSeleccionado, em
 
     if (selectedPaymentMethod === 'mercadopago') {
 
+      const valor50 = turno?.descripcion?.valor ? turno.descripcion.valor / 2 : 0;
+
+
       const reserva = {
         nombreCliente,
         telefonoCliente,
         pago: selectedPaymentMethod,
         fecha: fechaCompleta.toISOString(), 
+        price: valor50,
       };
 
       try {
         const token = localStorage.getItem("token");
-        const valor50 = turno?.descripcion?.valor ? turno.descripcion.valor / 2 : 0;
   
         const response = await axios.post(
           "https://reservaapp-zg71.onrender.com/api/mercadopago/crear-preferencia",
@@ -111,6 +114,8 @@ export const ConfirmarTurno = ({ turno, fecha, hora, handleTurnoSeleccionado, em
         pago: selectedPaymentMethod,
         fecha: fechaCompleta.toISOString(), 
         estado: "Confirmado",
+        price: valor50,
+
       };
 
 
