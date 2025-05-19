@@ -7,10 +7,19 @@ const EmprendimientoRoutes = require("./src/routes/emprendimiento.routes");
 const turnoRoutes = require("./src/routes/turnos.routes");
 const MpConectRoutes = require("./src/routes/MpConect.routes");
 const axios = require("axios");
+const fs = require("fs");
+
 
 
 
 const app = express();
+
+
+
+const options = {
+  key: fs.readFileSync('./private-key.pem'),
+  cert: fs.readFileSync('./certificate.pem')
+};
 
 // Middlewares
 app.use(express.json());
